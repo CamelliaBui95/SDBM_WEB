@@ -56,3 +56,27 @@ U
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+a
+1src/main/java/fr/btn/sdbm_web/dao/ArticleDAO.java,3\0\30356c1271e45277368ddc529599b3adf26120ac
+a
+1src/main/java/fr/btn/sdbm_web/metier/Article.java,0\0\003f5d9e896f3c963eba31954187f829706df06c
+g
+7src/main/java/fr/btn/sdbm_web/metier/ArticleSearch.java,f\a\fa815e0d85e7bad2168b9f0d78a1d757f5bb52cf
+`
+0src/main/java/fr/btn/sdbm_web/metier/Volume.java,9\0\90372c04abb1ea83b9daac64ff4365928a64c39c
+^
+.src/main/java/fr/btn/sdbm_web/metier/Type.java,9\6\96ea9574f7478349c89c2d7de57e6cc6dd1779cf
+c
+3src/main/java/fr/btn/sdbm_web/metier/Fabricant.java,8\a\8ab2945f8826b4bce8c4a94bc0c4457789f8b8bd
+`
+0src/main/java/fr/btn/sdbm_web/metier/Marque.java,c\6\c6aaa1336715581f76427fcf4a0089c664431787
+^
+.src/main/java/fr/btn/sdbm_web/metier/Pays.java,7\6\769250a3a43c3f8efa97858a2521b0ba4f2e872e
+c
+3src/main/java/fr/btn/sdbm_web/metier/Continent.java,5\5\55055c0ff08c086c3398171ec31caf5ceebd0022
+a
+1src/main/java/fr/btn/sdbm_web/metier/Titrage.java,2\7\27d8d47527e4993fd107a2aa9c4efa2f877cdf2c
+f
+6src/main/java/fr/btn/sdbm_web/service/ArticleBean.java,6\2\62b7e09d706bd1e3dd5d0a00dcee0e5c99e997d1
+Y
+)src/main/webapp/faces/index-article.xhtml,e\9\e921f80ec9a5fd5fb660a8801f7c028ca20db79e

@@ -4,6 +4,17 @@ body {
     height: 100vh;
 }
 
+.link-container {
+    padding: 0;
+    margin: 0;
+}
+
+.link-container li {
+    list-style: none;
+    color: white !important;
+    font-size: 1.75rem;
+}
+
 #logo {
     margin-left: 0.5rem;
     font-size: 2.75rem;
@@ -11,14 +22,18 @@ body {
 }
 
 #header {
-    height: 5%;
+    max-height: 5%;
+    background-color: darkslategrey;
+    color: white !important;
 }
 
 #main {
     margin-top: 5%;
-    height: 85%;
+    max-height: 90%;
 }
 
 #footer {
-
+    max-height: 5%;
+    background-color: darkslategrey;
+    color: white !important;
 }

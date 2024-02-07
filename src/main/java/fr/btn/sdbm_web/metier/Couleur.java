@@ -10,6 +10,11 @@ public class Couleur {
         this.nomCouleur = nomCouleur;
     }
 
+    public Couleur() {
+        this.id = 0;
+        this.nomCouleur = "";
+    }
+
     public int getId() {
         return id;
     }

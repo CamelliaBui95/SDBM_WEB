@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:composition template="templates/layout.xhtml"
+                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html">
+        <ui:define name="main">
+            <div class="card">
+                <h:form id="article-form">
+                    <p:dataTable id="articles" var="article" value="#{articleBean.allArticles}" rowKey="#{article.id}"
+                                 selection="#{articleBean.selectedArticle}" selectionMode="single">
+                        <f:facet name="header">
+                            RightClick to View Product
+                        </f:facet>
+
+                        <p:column headerText="Référence">
+                            <h:outputText value="#{article.id}" />
+                        </p:column>
+                        <p:column headerText="Nom Article">
+                            <h:outputText value="#{article.nomArticle}" />
+                        </p:column>
+                        <p:column headerText="Volume">
+                            <h:outputText value="#{article.volume.volume}" />
+                        </p:column>
+                        <p:column headerText="Titrage">
+                            <h:outputText value="#{article.titrage.titrage}" />
+                        </p:column>
+                        <p:column headerText="Quantité">
+                            <h:outputText value="#{article.quantite}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

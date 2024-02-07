@@ -27,28 +27,14 @@
     margin: 0;
 }
 
-.link-container {
-    padding: 0;
-    margin: 0;
-}
-
-.link-container li {
-    list-style: none;
-    font-size: 1.75rem;
-}
-
 .mx-1 {
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
 .no-decoration {
-    color: black !important;
     text-decoration: none !important;
-}
-
-.link-container li:hover {
-    color: var(--teal-500) !important;
+    color: white !important;
 }
 
 .w-90 {
@@ -65,12 +51,14 @@
 
 .sticky {
     position: fixed;
+    z-index: 1;
     top: 0;
     width: 100%;
 }
 
 .sticky-bottom {
     position: fixed;
+    z-index: 1;
     bottom: 0;
     width: 100%;
 }
