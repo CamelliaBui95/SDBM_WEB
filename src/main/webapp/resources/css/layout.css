@@ -1,0 +1,24 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Source Code Pro', monospace;
+    height: 100vh;
+}
+
+#logo {
+    margin-left: 0.5rem;
+    font-size: 2.75rem;
+    font-weight: 600;
+}
+
+#header {
+    height: 5%;
+}
+
+#main {
+    margin-top: 5%;
+    height: 85%;
+}
+
+#footer {
+
+}
