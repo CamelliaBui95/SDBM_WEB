@@ -27,6 +27,9 @@ public class CouleurBean implements Serializable {
     @PostConstruct
     public void init() {
         allCouleurs = DAOFactory.getCouleurDAO().getAll();
+        allCouleurs.add(0, new Couleur(0, "Choisir une couleur"));
+        selectedCouleur = new Couleur();
+
         model = new DefaultTagCloudModel();
 
         int[] strengths = {2,5,3,4};

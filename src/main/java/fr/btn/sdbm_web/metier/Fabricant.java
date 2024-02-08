@@ -12,6 +12,8 @@ public class Fabricant {
     }
 
     public Fabricant() {
+        this.id = 0;
+        this.nomFabricant = "";
     }
 
     public int getId() {

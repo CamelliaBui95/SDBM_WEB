@@ -19,8 +19,16 @@
     justify-content: center;
 }
 
+.justify-start {
+    justify-content: flex-start;
+}
+
 .items-center {
     align-items: center;
+}
+
+.gap-1 {
+    gap: 0.5rem;
 }
 
 .m-0 {

@@ -13,25 +13,120 @@
         <ui:define name="main">
             <div class="card">
                 <h:form id="article-form">
-                    <p:dataTable id="articles" var="article" value="#{articleBean.allArticles}" rowKey="#{article.id}"
+                    <p:dataTable id="articles" var="article"
+                                 value="#{articleBean.allArticles}"
+                                 rowKey="#{article.id}"
+                                 rows="#{articleBean.articleSearch.limit}"
+                                 paginator="true" paginatorPosition="bottom"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 allowUnsorting="true" sortMode="single"
                                  selection="#{articleBean.selectedArticle}" selectionMode="single">
                         <f:facet name="header">
-                            RightClick to View Product
+                            <div class="card">
+                               <h:form>
+                                   <p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
+                                       <p:row>
+                                           <p:column>
+                                               <div class="flex flex-row justify-start items-center gap-1" style="width: 100%">
+                                                   <h:outputLabel for="search-article" value="Search Article: "/>
+                                                   <p:inputText id="search-article" value="#{articleBean.articleSearch.nomArticle}" label="Search Article" style="flex-grow: 1">
+                                                       <f:validateLength minimum="2"/>
+                                                   </p:inputText>
+                                               </div>
+                                           </p:column>
+                                           <p:column>
+                                               <div style="width: 100%">
+                                                   <p:selectOneMenu id="search-Pays" value="#{paysBean.selectedPays}"
+                                                                    var="pays"
+                                                                    filter="true"
+                                                                    filterMatchMode="startsWith"
+                                                                    filterNormalize="true"
+                                                                    style="width: 100%">
+
+                                                       <f:selectItems value="#{paysBean.allPays}"/>
+                                                       <f:converter converterId="paysConverter"/>
+
+                                                       <p:column style="width:10%">
+                                                           <span style="width: 30px; height: 20px">#{pays.id}</span>
+                                                       </p:column>
+
+                                                       <p:column>
+                                                           <f:facet name="header">
+                                                               <h:outputText value="Nom Pays"/>
+                                                           </f:facet>
+                                                           <h:outputText value="#{pays.nomPays}"/>
+                                                       </p:column>
+
+                                                       <f:facet name="footer">
+                                                           <h:outputText value="#{paysBean.allPays.size()} pays"
+                                                                         style="font-weight:bold;" styleClass="py-1 block"/>
+                                                       </f:facet>
+                                                   </p:selectOneMenu>
+                                               </div>
+                                           </p:column>
+                                       </p:row>
+
+                                       <p:row>
+                                           <p:column>
+
+                                           </p:column>
+                                           <p:column>
+                                               <p:selectOneMenu id="search-continent" value="#{continentBean.selectedContinent}" label="Search Continent" style="width: 100%">
+                                                   <f:selectItems value="#{continentBean.allContinents}"/>
+                                                   <f:converter converterId="continentConverter"/>
+
+                                                   <f:facet name="footer">
+                                                       <h:outputText value="#{continentBean.allContinents.size() - 1} continents"
+                                                                     style="font-weight:bold;" styleClass="py-1 block"/>
+                                                   </f:facet>
+                                               </p:selectOneMenu>
+                                           </p:column>
+                                       </p:row>
+
+                                       <p:row>
+                                           <p:column>
+                                               <p:selectOneMenu id="search-couleur" value="#{couleurBean.selectedCouleur}" label="Search Couleur" style="width: 100%">
+                                                   <f:selectItems value="#{couleurBean.allCouleurs}"/>
+                                                   <f:converter converterId="couleurConverter"/>
+
+                                                   <f:facet name="footer">
+                                                       <h:outputText value="#{couleurBean.allCouleurs.size() - 1} couleurs"
+                                                                     style="font-weight:bold;" styleClass="py-1 block"/>
+                                                   </f:facet>
+                                               </p:selectOneMenu>
+                                           </p:column>
+                                           <p:column>
+                                               <p:selectOneMenu id="search-continent" value="#{continentBean.selectedContinent}" label="Search Continent" style="width: 100%">
+                                                   <f:selectItems value="#{continentBean.allContinents}"/>
+                                                   <f:converter converterId="continentConverter"/>
+
+                                                   <f:facet name="footer">
+                                                       <h:outputText value="#{continentBean.allContinents.size() - 1} continents"
+                                                                     style="font-weight:bold;" styleClass="py-1 block"/>
+                                                   </f:facet>
+                                               </p:selectOneMenu>
+                                           </p:column>
+                                       </p:row>
+
+                                   </p:panelGrid>
+                               </h:form>
+                            </div>
                         </f:facet>
 
-                        <p:column headerText="Référence">
+                        <p:column headerText="Référence" sortBy="#{article.id}">
                             <h:outputText value="#{article.id}" />
                         </p:column>
-                        <p:column headerText="Nom Article">
+                        <p:column headerText="Nom Article" sortBy="#{article.nomArticle}">
                             <h:outputText value="#{article.nomArticle}" />
                         </p:column>
-                        <p:column headerText="Volume">
+                        <p:column headerText="Volume" sortBy="#{article.volume.volume}">
                             <h:outputText value="#{article.volume.volume}" />
                         </p:column>
-                        <p:column headerText="Titrage">
+                        <p:column headerText="Titrage" sortBy="#{article.titrage.titrage}">
                             <h:outputText value="#{article.titrage.titrage}" />
                         </p:column>
-                        <p:column headerText="Quantité">
+                        <p:column headerText="Quantité" sortBy="#{article.quantite}">
                             <h:outputText value="#{article.quantite}" />
                         </p:column>
                     </p:dataTable>

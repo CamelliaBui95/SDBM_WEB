@@ -6,6 +6,11 @@ public class Continent {
     private int id;
     private String nomContinent;
 
+    public Continent() {
+        this.id = 0;
+        this.nomContinent = "";
+    }
+
     public Continent(int id, String nomContinent) {
         this.id = id;
         this.nomContinent = nomContinent;
@@ -38,5 +43,10 @@ public class Continent {
     @Override
     public int hashCode() {
         return Objects.hash(id, nomContinent);
+    }
+
+    @Override
+    public String toString() {
+        return nomContinent;
     }
 }

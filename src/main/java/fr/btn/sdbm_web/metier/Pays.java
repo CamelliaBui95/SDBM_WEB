@@ -15,6 +15,9 @@ public class Pays {
     }
 
     public Pays() {
+        this.id = 0;
+        this.nomPays = "";
+        this.continent = new Continent();
     }
 
     public int getId() {
@@ -52,5 +55,10 @@ public class Pays {
     @Override
     public int hashCode() {
         return Objects.hash(id, nomPays);
+    }
+
+    @Override
+    public String toString() {
+        return nomPays;
     }
 }

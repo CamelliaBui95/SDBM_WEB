@@ -2,6 +2,7 @@ package fr.btn.sdbm_web.service;
 
 import fr.btn.sdbm_web.dao.DAOFactory;
 import fr.btn.sdbm_web.metier.Article;
+import fr.btn.sdbm_web.metier.ArticleSearch;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
@@ -16,8 +17,11 @@ public class ArticleBean implements Serializable {
 
     private Article selectedArticle;
 
+    private ArticleSearch articleSearch;
+
     @PostConstruct
     public void init() {
+        articleSearch = new ArticleSearch();
         allArticles = DAOFactory.getArticleDAO().getAll();
     }
 
@@ -35,5 +39,13 @@ public class ArticleBean implements Serializable {
 
     public void setSelectedArticle(Article selectedArticle) {
         this.selectedArticle = selectedArticle;
+    }
+
+    public ArticleSearch getArticleSearch() {
+        return articleSearch;
+    }
+
+    public void setArticleSearch(ArticleSearch articleSearch) {
+        this.articleSearch = articleSearch;
     }
 }
