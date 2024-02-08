@@ -57,8 +57,8 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
             stm.setInt(8, articleSearch.getPays().getId());
             stm.setInt(9, articleSearch.getFabricant().getId());
             stm.setInt(10, articleSearch.getContinent().getId());
-            stm.setInt(11, articleSearch.getPage());
-            stm.setInt(12, articleSearch.getLimit());
+            stm.setInt(11, 0);
+            stm.setInt(12, 0);
             stm.registerOutParameter(13, Types.INTEGER);
 
             stm.executeQuery();

@@ -206,3 +206,7 @@ h
 .src/main/java/fr/btn/sdbm_web/dao/TypeDAO.java,6\6\66bbb25b8fe7fb537021a377aed3a86072fbc698
 c
 3src/main/java/fr/btn/sdbm_web/service/TypeBean.java,f\0\f0c9b5ac9d99f3b3d22ce3ac111f1af0abafdc02
+j
+:src/main/java/fr/btn/sdbm_web/converter/TypeConverter.java,3\9\399d05cd2f08307748a93e0e69ecd36e0a373197
+q
+Asrc/main/java/fr/btn/sdbm_web/converter/ArticleNameConverter.java,b\2\b2b090deaf2108178e49af3f481afd5fb98e9c87

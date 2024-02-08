@@ -12,8 +12,6 @@ public class ArticleSearch {
     private Titrage titrageMin = new Titrage(0);
     private Titrage titrageMax = new Titrage(30);
 
-    private int limit = 10;
-    private int page = 1;
 
     public String getNomArticle() {
         return nomArticle;
@@ -96,19 +94,4 @@ public class ArticleSearch {
         this.titrageMax = titrageMax;
     }
 
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
 }
