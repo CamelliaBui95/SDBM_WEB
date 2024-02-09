@@ -18,7 +18,6 @@ public class ArticleSearch {
     }
 
     public void setNomArticle(String nomArticle) {
-        System.out.println(nomArticle);
         this.nomArticle = nomArticle;
     }
 

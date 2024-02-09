@@ -53,6 +53,10 @@
     width: 50%;
 }
 
+.w-fit {
+    width: fit-content;
+}
+
 .m-auto {
     margin: 0 auto;
 }

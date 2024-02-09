@@ -1,0 +1,11 @@
+
+Q
+java:S1948"/Make "allContinents" transient or serializable.(®“¥”ıÿÿÿÿ8ÎµÀéØ1
+Q
+java:S1948"4Make "filteredContinents" transient or serializable.(·†õ8ÎµÀéØ1
+U
+java:S1948"3Make "selectedContinent" transient or serializable.(©ŠŸÿÿÿÿÿ8ÎµÀéØ1
+U
+java:S1128"8Remove this unused import 'fr.btn.sdbm_web.metier.Pays'.(»ø˜Ù8ÓµÀéØ1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ÓµÀéØ1

@@ -1,9 +1,9 @@
 
 J
-java:S1948"-Make "allArticles" transient or serializable.(ÖØ8å¹ÎÈØ1
+java:S1948"-Make "allArticles" transient or serializable.(ÖØ8¡ØæØ1
 S
-java:S1948"1Make "selectedArticle" transient or serializable.(óäÁèúÿÿÿÿ8å¹ÎÈØ1
+java:S1948"1Make "selectedArticle" transient or serializable.(óäÁèúÿÿÿÿ8¡ØæØ1
 L
-java:S1948"/Make "articleSearch" transient or serializable.(ƒßŸ®8æ¹ÎÈØ1
+java:S1948"/Make "articleSearch" transient or serializable.(ƒßŸ®8¢ØæØ1
 c
-java:S1128"ARemove this unused import 'jakarta.faces.event.ValueChangeEvent'.(àÒªıÿÿÿÿ8ì¹ÎÈØ1
+java:S1128"ARemove this unused import 'jakarta.faces.event.ValueChangeEvent'.(àÒªıÿÿÿÿ8¬ØæØ1

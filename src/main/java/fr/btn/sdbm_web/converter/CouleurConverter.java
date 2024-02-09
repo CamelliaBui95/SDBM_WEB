@@ -1,5 +1,6 @@
 package fr.btn.sdbm_web.converter;
 import fr.btn.sdbm_web.metier.Couleur;
+import fr.btn.sdbm_web.service.ArticleBean;
 import fr.btn.sdbm_web.service.CouleurBean;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;

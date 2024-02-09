@@ -49,12 +49,13 @@ public class ArticleBean implements Serializable {
         return articleSearch;
     }
 
-    public void setArticleSearch(ArticleSearch articleSearch) {
-        this.articleSearch = articleSearch;
-    }
-
     public void updateArticles() {
         allArticles = DAOFactory.getArticleDAO().getLike(articleSearch);
+    }
+
+    public void initialize() {
+        articleSearch = new ArticleSearch();
+        allArticles = DAOFactory.getArticleDAO().getAll();
     }
 
     public String getSearchedName() {

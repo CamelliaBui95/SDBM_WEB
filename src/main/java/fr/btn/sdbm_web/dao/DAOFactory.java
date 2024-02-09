@@ -6,6 +6,7 @@ public class DAOFactory {
     private static PaysDAO paysDAO;
     private static ContinentDAO continentDAO;
     private static TypeDAO typeDAO;
+    private static MarqueDAO marqueDAO;
 
     private DAOFactory() {
 
@@ -45,4 +46,13 @@ public class DAOFactory {
 
         return typeDAO;
     }
+
+    public static MarqueDAO getMarqueDAO() {
+        if(marqueDAO == null)
+            marqueDAO = new MarqueDAO();
+
+        return marqueDAO;
+    }
+
+
 }

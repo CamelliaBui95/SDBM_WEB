@@ -1,12 +1,13 @@
 package fr.btn.sdbm_web.dao;
 
 import fr.btn.sdbm_web.metier.Continent;
+import fr.btn.sdbm_web.metier.Pays;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ContinentDAO extends DAO<Continent, Continent>{
+public class ContinentDAO extends DAO<Continent, Pays>{
     @Override
     public ArrayList<Continent> getAll() {
         ArrayList<Continent> continents = new ArrayList<>();
@@ -24,7 +25,7 @@ public class ContinentDAO extends DAO<Continent, Continent>{
     }
 
     @Override
-    public ArrayList<Continent> getLike(Continent object) {
+    public ArrayList<Continent> getLike(Pays pays) {
         return null;
     }
 
