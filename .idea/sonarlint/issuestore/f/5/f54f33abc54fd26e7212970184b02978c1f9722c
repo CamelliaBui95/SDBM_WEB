@@ -1,0 +1,11 @@
+
+‚
+java:S1450"`Remove the "selectedFabricant" field and declare it as a local variable in the relevant methods.(¦Ğ¥ıÿÿÿÿ8±¼Ò¾Ù1
+L
+java:S1948"/Make "allFabricants" transient or serializable.(Ãæãó8²¼Ò¾Ù1
+V
+java:S1948"4Make "filteredFabricants" transient or serializable.(»é¤…ûÿÿÿÿ8²¼Ò¾Ù1
+U
+java:S1948"3Make "selectedFabricant" transient or serializable.(¦Ğ¥ıÿÿÿÿ8³¼Ò¾Ù1
+W
+java:S1068"5Remove this unused "selectedFabricant" private field.(¦Ğ¥ıÿÿÿÿ8Å¼Ò¾Ù1

@@ -11,6 +11,7 @@ public class Article {
     private Marque marque;
     private Titrage titrage;
     private int quantite;
+    private float prixAchat;
 
     public Article(int id, String nomArticle) {
         this.id = id;
@@ -84,6 +85,14 @@ public class Article {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    public float getPrixAchat() {
+        return prixAchat;
+    }
+
+    public void setPrixAchat(float prixAchat) {
+        this.prixAchat = prixAchat;
     }
 
     @Override

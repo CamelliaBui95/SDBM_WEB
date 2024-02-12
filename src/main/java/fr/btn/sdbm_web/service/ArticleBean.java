@@ -4,10 +4,13 @@ import fr.btn.sdbm_web.dao.DAOFactory;
 import fr.btn.sdbm_web.metier.Article;
 import fr.btn.sdbm_web.metier.ArticleSearch;
 import fr.btn.sdbm_web.utils.LazySorter;
+import fr.btn.sdbm_web.utils.Messenger;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import org.primefaces.PrimeFaces;
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
@@ -26,6 +29,7 @@ public class ArticleBean implements Serializable {
     private List<Article> allArticles;
     private Article selectedArticle;
     private ArticleSearch articleSearch;
+    private boolean addNew = false;
 
     @PostConstruct
     public void init() {
@@ -113,6 +117,40 @@ public class ArticleBean implements Serializable {
 
     public void updateArticles() {
         allArticles = DAOFactory.getArticleDAO().getLike(articleSearch);
+    }
+
+    public void postArticle() {
+        boolean isUpdated;
+        String msgDetail = "";
+
+        if(addNew)
+            isUpdated = DAOFactory.getArticleDAO().post(selectedArticle);
+        else
+            isUpdated = DAOFactory.getArticleDAO().update(selectedArticle);
+
+        if(isUpdated)
+            Messenger.addMessage(FacesMessage.SEVERITY_INFO, "Message", "L'article a été ajouté/modifié.");
+        else
+            Messenger.addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Impossible d'ajouter/modifier cet article. Veuillez réessayer.");
+
+        PrimeFaces.current().executeScript("PF('manageArticleDialog').hide()");
+        PrimeFaces.current().ajax().update("articles", "messages");
+    }
+
+    public void deleteArticle() {
+        boolean isDeleted = DAOFactory.getArticleDAO().delete(selectedArticle);
+        if(isDeleted)
+            Messenger.addMessage(FacesMessage.SEVERITY_INFO, "Message", "L'article a été supprimé.");
+        else
+            Messenger.addMessage(FacesMessage.SEVERITY_ERROR, "Error", "Impossible de supprimer cet article. Veuillez réessayer.");
+
+        PrimeFaces.current().executeScript("PF('deleteArticleDialog').hide()");
+        PrimeFaces.current().ajax().update("articles", "messages");
+    }
+
+    public void openNew() {
+        this.selectedArticle = new Article(0, "");
+        addNew = true;
     }
 
     public void initialize() {

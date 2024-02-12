@@ -28,6 +28,7 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
                 marque.setPays(pays);
                 marque.setFabricant(fabricant);
 
+                article.setPrixAchat(rs.getFloat("PRIX_ACHAT"));
                 article.setVolume(volume);
                 article.setTitrage(titrage);
                 article.setType(type);
@@ -88,6 +89,7 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
                 marque.setPays(pays);
                 marque.setFabricant(fabricant);
 
+                article.setPrixAchat(rs.getFloat("PRIX_ACHAT"));
                 article.setVolume(volume);
                 article.setTitrage(titrage);
                 article.setType(type);
@@ -111,6 +113,9 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
         try ( PreparedStatement stmt = connection.prepareStatement(rq, Statement.RETURN_GENERATED_KEYS)){
             stmt.setInt(1, article.getId());
             stmt.setString(2, article.getNomArticle());
+            stmt.setFloat(3, article.getPrixAchat());
+            stmt.setInt(4, article.getVolume().getVolume());
+            stmt.setFloat(5, article.getTitrage().getTitrage());
             stmt.setInt(6, article.getMarque().getId());
             stmt.setInt(7, article.getCouleur().getId());
             stmt.setInt(8, article.getType().getId());
@@ -124,13 +129,36 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
     }
 
     @Override
-    public boolean post(Article object) {
-        return false;
+    public boolean post(Article article) {
+        String ps = "{call ps_insertArticle(?,?,?,?,?,?,?,?)}";
+        try(PreparedStatement stmt = connection.prepareStatement(ps)) {
+            stmt.setString(1, article.getNomArticle());
+            stmt.setFloat(2, article.getPrixAchat());
+            stmt.setInt(3, article.getVolume().getVolume());
+            stmt.setFloat(4, article.getTitrage().getTitrage());
+            stmt.setInt(5, article.getMarque().getId());
+            stmt.setInt(6, article.getCouleur().getId());
+            stmt.setInt(7, article.getType().getId());
+            stmt.setInt(8, article.getQuantite());
+            stmt.execute();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public boolean delete(Article object) {
-        return false;
+    public boolean delete(Article article) {
+        String rq = "DELETE FROM ARTICLE WHERE ID_ARTICLE=?";
+        try(PreparedStatement stmt = connection.prepareStatement(rq)) {
+            stmt.setInt(1, article.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public int getNbRecords() {
