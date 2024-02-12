@@ -44,4 +44,9 @@ public class Fabricant {
     public int hashCode() {
         return Objects.hash(id, nomFabricant);
     }
+
+    @Override
+    public String toString() {
+        return nomFabricant;
+    }
 }

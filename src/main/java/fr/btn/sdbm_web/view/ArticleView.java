@@ -1,9 +1,7 @@
 package fr.btn.sdbm_web.view;
 
 import fr.btn.sdbm_web.metier.Pays;
-import fr.btn.sdbm_web.service.ArticleBean;
-import fr.btn.sdbm_web.service.ContinentBean;
-import fr.btn.sdbm_web.service.PaysBean;
+import fr.btn.sdbm_web.service.*;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -19,10 +17,16 @@ public class ArticleView implements Serializable {
     private PaysBean paysBean;
     @Inject
     private ContinentBean continentBean;
+    @Inject
+    private MarqueBean marqueBean;
+    @Inject
+    private FabricantBean fabricantBean;
 
     public void initialize() {
         paysBean.initialize();
         continentBean.initialize();
         articleBean.initialize();
+        marqueBean.initialize();
+        fabricantBean.initialize();
     }
 }

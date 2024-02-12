@@ -98,4 +98,20 @@ public class Article {
     public int hashCode() {
         return Objects.hash(id, nomArticle, volume, type, couleur, marque, titrage, quantite);
     }
+
+    public Object getComparatorValue(String field) {
+        field = field.toLowerCase();
+        if(field.equals("nomarticle"))
+            return nomArticle;
+        if(field.equals("reference") || field.equals("id"))
+            return id;
+        if(field.equals("volume.volume"))
+            return volume.getVolume();
+        if(field.equals("titrage.titrage"))
+            return titrage.getTitrage();
+        if(field.equals("quantite"))
+            return quantite;
+
+        return null;
+    }
 }

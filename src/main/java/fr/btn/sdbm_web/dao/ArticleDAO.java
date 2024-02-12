@@ -2,10 +2,7 @@ package fr.btn.sdbm_web.dao;
 
 import fr.btn.sdbm_web.metier.*;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.Types;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ArticleDAO extends DAO<Article, ArticleSearch>{
@@ -22,7 +19,14 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
                 Titrage titrage = new Titrage(rs.getFloat("TITRAGE"));
                 Type type = new Type(rs.getInt("ID_TYPE"), rs.getString("NOM_TYPE"));
                 Couleur couleur = new Couleur(rs.getInt("ID_COULEUR"), rs.getString("NOM_COULEUR"));
-                Marque marque = new Marque(rs.getInt("ID_MARQUE"), rs.getString("NOM_MARQUE"));
+
+                Continent continent = new Continent(rs.getInt("ID_CONTINENT"), rs.getString("CONTINENT"));
+                Pays pays = new Pays(rs.getInt("ID_PAYS"), rs.getString("PAYS"), continent);
+                Fabricant fabricant = new Fabricant(rs.getInt("ID_FABRICANT"), rs.getString("FABRICANT"));
+
+                Marque marque = new Marque(rs.getInt("ID_MARQUE"), rs.getString("MARQUE"));
+                marque.setPays(pays);
+                marque.setFabricant(fabricant);
 
                 article.setVolume(volume);
                 article.setTitrage(titrage);
@@ -57,13 +61,16 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
             stm.setInt(8, articleSearch.getPays().getId());
             stm.setInt(9, articleSearch.getFabricant().getId());
             stm.setInt(10, articleSearch.getContinent().getId());
-            stm.setInt(11, 0);
-            stm.setInt(12, 0);
+            stm.setInt(11, articleSearch.getOffset());
+            stm.setInt(12, articleSearch.getPageSize());
             stm.registerOutParameter(13, Types.INTEGER);
 
-            stm.executeQuery();
+            ResultSet rs = stm.executeQuery();
+            rs.next();
+            articleSearch.setRowCount(rs.getInt(1));
+
             stm.getMoreResults();
-            ResultSet rs = stm.getResultSet();
+            rs = stm.getResultSet();
 
             while(rs.next()) {
                 Article article = new Article(rs.getInt("Référence"), rs.getString("Désignation"));
@@ -72,7 +79,14 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
                 Titrage titrage = new Titrage(rs.getFloat("TITRAGE"));
                 Type type = new Type(rs.getInt("ID_TYPE"), rs.getString("TYPE"));
                 Couleur couleur = new Couleur(rs.getInt("ID_COULEUR"), rs.getString("COULEUR"));
+
+                Continent continent = new Continent(rs.getInt("ID_CONTINENT"), rs.getString("CONTINENT"));
+                Pays pays = new Pays(rs.getInt("ID_PAYS"), rs.getString("PAYS"), continent);
+                Fabricant fabricant = new Fabricant(rs.getInt("ID_FABRICANT"), rs.getString("FABRICANT"));
+
                 Marque marque = new Marque(rs.getInt("ID_MARQUE"), rs.getString("MARQUE"));
+                marque.setPays(pays);
+                marque.setFabricant(fabricant);
 
                 article.setVolume(volume);
                 article.setTitrage(titrage);
@@ -92,8 +106,21 @@ public class ArticleDAO extends DAO<Article, ArticleSearch>{
     }
 
     @Override
-    public boolean update(Article object) {
-        return false;
+    public boolean update(Article article) {
+        String rq = "{call ps_modifierArticle(?,?,?,?,?,?,?,?,?)}";
+        try ( PreparedStatement stmt = connection.prepareStatement(rq, Statement.RETURN_GENERATED_KEYS)){
+            stmt.setInt(1, article.getId());
+            stmt.setString(2, article.getNomArticle());
+            stmt.setInt(6, article.getMarque().getId());
+            stmt.setInt(7, article.getCouleur().getId());
+            stmt.setInt(8, article.getType().getId());
+            stmt.setInt(9, article.getQuantite());
+            stmt.executeUpdate();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

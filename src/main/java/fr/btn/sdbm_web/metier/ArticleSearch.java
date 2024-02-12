@@ -11,7 +11,10 @@ public class ArticleSearch {
     private Volume volume = new Volume();
     private Titrage titrageMin = new Titrage(0);
     private Titrage titrageMax = new Titrage(30);
+    private int offset = 1;
+    private int pageSize = 5;
 
+    private int rowCount = 0;
 
     public String getNomArticle() {
         return nomArticle;
@@ -93,4 +96,27 @@ public class ArticleSearch {
         this.titrageMax = titrageMax;
     }
 
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
 }

@@ -38,7 +38,7 @@ public class PaysDAO extends DAO<Pays, Continent>{
     @Override
     public ArrayList<Pays> getLike(Continent continent) {
         ArrayList<Pays> paysList = new ArrayList<>();
-        String request = "{call ps_searchPays(?)}";
+        String request = "{call ps_searchPays(@ID_CONTINENT=?)}";
 
         try(PreparedStatement stmt = connection.prepareCall(request);) {
             stmt.setInt(1, continent.getId());

@@ -70,4 +70,9 @@ public class Marque {
     public int hashCode() {
         return Objects.hash(id, nomMarque, pays, fabricant);
     }
+
+    @Override
+    public String toString() {
+        return nomMarque;
+    }
 }

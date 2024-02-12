@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <div class="article-container flex flex-col justify-center items-center">
+            <div class="card article">
+                <h3><ui:insert name="nom-article"/></h3>
+
+                <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
+                    <h:outputText class="w-full block text-right text-bold" value="Type:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-type"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Couleur:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-couleur"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Titrage:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-titrage"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Volume:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-volume"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Marque:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-marque"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Country:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-marque-pays"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Fabricant:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-marque-fabricant"/>
+                        </span>
+                    </div>
+
+                    <h:outputText class="w-full block text-right text-bold" value="Stock:"/>
+                    <div class="w-full">
+                        <span class="w-full block text-left">
+                            <ui:insert name="article-quantite"/>
+                        </span>
+                    </div>
+                </p:panelGrid>
+            </div>
+        </div>
+    </ui:composition>
+
+</html>

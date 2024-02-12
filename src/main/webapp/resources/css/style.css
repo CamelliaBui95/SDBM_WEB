@@ -57,6 +57,10 @@
     width: fit-content;
 }
 
+.w-full {
+    width: 100%;
+}
+
 .m-auto {
     margin: 0 auto;
 }
@@ -73,5 +77,21 @@
     z-index: 1;
     bottom: 0;
     width: 100%;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.block {
+    display: inline-block;
 }
 
