@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <ui:composition template="../templates/layout.xhtml"
+                    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                    xmlns:h="http://xmlns.jcp.org/jsf/html">
+        <ui:define name="main">
+            <div class="card">
+                <p:growl id="messages" showDetail="true" />
+                <div id="article-view">
+                    <p:dataTable id="articles" var="article"
+                                 value="#{articleBean.articleModel}"
+                                 rowKey="#{article.id}"
+                                 rows="5"
+                                 lazy="true"
+                                 paginator="true" paginatorPosition="bottom"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 allowUnsorting="true" sortMode="single"
+                                 selection="#{articleBean.selectedArticle}" selectionMode="single">
+
+                        <f:facet name="header">
+                            <div class="card">
+                                <h:form>
+                                    <p:panelGrid columns="4" layout="grid" styleClass="showcase-text-align-center">
+                                        <p:row>
+                                            <p:column>
+                                                <div class="flex flex-row justify-start items-center gap-1" style="width: 100%">
+                                                    <h:outputLabel for="search-article" value="Search Article: "/>
+                                                    <p:inputText id="search-article" value="#{articleBean.articleSearch.nomArticle}" label="Search Article" style="flex-grow: 1"/>
+                                                </div>
+                                            </p:column>
+
+                                            <p:column>
+                                                <div style="width: 100%">
+                                                    <p:selectOneMenu id="search-pays" value="#{articleBean.articleSearch.pays}"
+                                                                     var="pays"
+                                                                     filter="true"
+                                                                     filterMatchMode="startsWith"
+                                                                     filterNormalize="true"
+                                                                     style="width: 100%">
+
+                                                        <f:selectItems value="#{paysBean.filteredPays}"/>
+                                                        <f:converter converterId="paysConverter"/>
+
+                                                        <p:column style="width:10%">
+                                                            <span style="width: 30px; height: 20px">#{pays.id}</span>
+                                                        </p:column>
+
+                                                        <p:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="Nom Pays"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{pays.nomPays}"/>
+                                                        </p:column>
+
+                                                        <f:facet name="footer">
+                                                            <h:outputText value="#{paysBean.filteredPays.size()} pays"
+                                                                          style="font-weight:bold;" styleClass="py-1 block"/>
+                                                        </f:facet>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:selectOneMenu id="search-couleur" value="#{articleBean.articleSearch.couleur}" label="Search Couleur" style="width: 100%">
+                                                    <f:selectItems value="#{couleurBean.allCouleurs}"/>
+                                                    <f:converter converterId="couleurConverter"/>
+
+                                                    <f:facet name="footer">
+                                                        <h:outputText value="#{couleurBean.allCouleurs.size() - 1} couleurs"
+                                                                      style="font-weight:bold;" styleClass="py-1 block"/>
+                                                    </f:facet>
+                                                </p:selectOneMenu>
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:selectOneMenu id="search-fabricant" value="#{articleBean.articleSearch.fabricant}" label="Search Fabricant" style="width: 100%">
+                                                    <p:ajax listener="#{marqueBean.onFabricantChange(articleBean.articleSearch.fabricant)}" update="search-marque"/>
+                                                    <f:selectItems value="#{fabricantBean.allFabricants}"/>
+                                                    <f:converter converterId="fabricantConverter"/>
+
+                                                    <f:facet name="footer">
+                                                        <h:outputText value="#{fabricantBean.filteredFabricants.size() - 1} fabricants"
+                                                                      style="font-weight:bold;" styleClass="py-1 block"/>
+                                                    </f:facet>
+                                                </p:selectOneMenu>
+                                            </p:column>
+                                        </p:row>
+
+                                        <p:row>
+
+                                            <p:column>
+                                                <div class="flex gap-1 justify-between items-center" style="width: 100%">
+                                                    <p:commandButton value="Submit" action="#{articleBean.updateArticles}" update="articles" styleClass="w-50" icon="pi pi-check" iconPos="right"/>
+                                                    <p:commandButton value="Initialize" action="#{articleView.initialize}" update="@form,articles" styleClass="w-50" icon="pi pi-undo" iconPos="right"/>
+                                                </div>
+
+                                            </p:column>
+
+                                            <p:column>
+                                                <p:selectOneMenu id="search-continent" value="#{articleBean.articleSearch.continent}" label="Search Continent" style="width: 100%">
+                                                    <p:ajax listener="#{paysBean.onContinentChange(articleBean.articleSearch.continent)}" update="search-pays"/>
+                                                    <f:selectItems value="#{continentBean.filteredContinents}"/>
+                                                    <f:converter converterId="continentConverter"/>
+
+                                                    <f:facet name="footer">
+                                                        <h:outputText value="#{continentBean.allContinents.size() - 1} continents"
+                                                                      style="font-weight:bold;" styleClass="py-1 block"/>
+                                                    </f:facet>
+                                                </p:selectOneMenu>
+                                            </p:column>
+                                            <p:column>
+                                                <p:selectOneMenu id="search-type" value="#{articleBean.articleSearch.type}" label="Search Type" style="width: 100%">
+                                                    <f:selectItems value="#{typeBean.allTypes}"/>
+                                                    <f:converter converterId="typeConverter"/>
+
+                                                    <f:facet name="footer">
+                                                        <h:outputText value="#{typeBean.allTypes.size() - 1} types"
+                                                                      style="font-weight:bold;" styleClass="py-1 block"/>
+                                                    </f:facet>
+                                                </p:selectOneMenu>
+                                            </p:column>
+                                            <p:column>
+                                                <div style="width: 100%">
+                                                    <p:selectOneMenu id="search-marque" value="#{articleBean.articleSearch.marque}"
+                                                                     var="marque"
+                                                                     filter="true"
+                                                                     filterMatchMode="startsWith"
+                                                                     filterNormalize="true"
+                                                                     style="width: 100%">
+
+                                                        <f:selectItems value="#{marqueBean.filteredMarques}"/>
+                                                        <f:converter converterId="marqueConverter"/>
+
+                                                        <p:column style="width:10%">
+                                                            <span style="width: 30px; height: 20px">#{marque.id}</span>
+                                                        </p:column>
+
+                                                        <p:column>
+                                                            <f:facet name="header">
+                                                                <h:outputText value="Nom Marque"/>
+                                                            </f:facet>
+                                                            <h:outputText value="#{marque.nomMarque}"/>
+                                                        </p:column>
+
+                                                        <f:facet name="footer">
+                                                            <h:outputText value="#{marqueBean.filteredMarques.size()} marques"
+                                                                          style="font-weight:bold;" styleClass="py-1 block"/>
+                                                        </f:facet>
+                                                    </p:selectOneMenu>
+                                                </div>
+                                            </p:column>
+                                        </p:row>
+                                    </p:panelGrid>
+                                </h:form>
+                            </div>
+                            <p:toolbar>
+                                <p:toolbarGroup>
+                                    <p:commandButton value="New" icon="pi pi-plus" actionListener="#{articleBean.openNew}"
+                                                     update=":dialogs:manage-article-content" oncomplete="PF('manageArticleDialog').show()"
+                                                     styleClass="ui-button-success" style="margin-right: .5rem">
+                                        <p:resetInput target=":dialogs:manage-article-content" />
+                                    </p:commandButton>
+                                </p:toolbarGroup>
+
+                                <p:toolbarGroup align="right">
+                                    <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download" />
+
+                                    <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                                        <p:dataExporter type="pdf" target="articles" fileName="products" />
+                                    </p:commandButton>
+
+                                </p:toolbarGroup>
+
+                            </p:toolbar>
+                        </f:facet>
+
+                        <p:column headerText="Référence" sortBy="#{article.id}">
+                            <h:outputText value="#{article.id}" />
+                        </p:column>
+                        <p:column headerText="Nom Article" sortBy="#{article.nomArticle}">
+                            <h:outputText value="#{article.nomArticle}" />
+                        </p:column>
+                        <p:column headerText="Volume" sortBy="#{article.volume.volume}">
+                            <h:outputText value="#{article.volume.volume}" />
+                        </p:column>
+                        <p:column headerText="Titrage" sortBy="#{article.titrage.titrage}">
+                            <h:outputText value="#{article.titrage.titrage}" />
+                        </p:column>
+                        <p:column headerText="Quantité" sortBy="#{article.quantite}">
+                            <h:outputText value="#{article.quantite}" />
+                        </p:column>
+
+                        <p:column style="text-align: center">
+                            <div class="flex flex-row justify-center items-center gap-1">
+                                <p:commandButton update=":dialogs:articleDetail" oncomplete="PF('articleDialog').show()"
+                                                 icon="pi pi-search">
+                                    <f:setPropertyActionListener value="#{article}"
+                                                                 target="#{articleBean.selectedArticle}"/>
+                                </p:commandButton>
+
+                                <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-article-content"
+                                                 oncomplete="PF('manageArticleDialog').show()"
+                                                 styleClass="edit-button ui-button-success" process="@this">
+                                    <f:setPropertyActionListener value="#{article}" target="#{articleBean.selectedArticle}" />
+                                    <p:resetInput target=":dialogs:manage-article-content" />
+                                </p:commandButton>
+
+                                <p:commandButton class="ui-button-warning" icon="pi pi-trash"
+                                                 process="@this"
+                                                 oncomplete="PF('deleteArticleDialog').show()">
+                                    <f:setPropertyActionListener value="#{article}" target="#{articleBean.selectedArticle}" />
+                                </p:commandButton>
+                            </div>
+
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+                <h:form id="dialogs">
+                    <p:dialog header="Détail d'Article" widgetVar="articleDialog" modal="true" showEffect="fade"
+                              hideEffect="fade" resizable="false">
+                        <p:outputPanel id="articleDetail" style="text-align:center;">
+                            <p:column rendered="#{not empty articleBean.selectedArticle}">
+                                <div class="article-container flex flex-col justify-center items-center">
+                                    <div class="card article">
+                                        <h3>#{articleBean.selectedArticle.nomArticle}</h3>
+                                        <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
+                                            <h:outputText class="w-full block text-right text-bold" value="Type:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.type}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Couleur:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.couleur}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Titrage:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.titrage.titrage}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Volume:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.volume.volume}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Marque:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.marque}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Country:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.marque.pays}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Fabricant:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.marque.fabricant}"/>
+
+                                            <h:outputText class="w-full block text-right text-bold" value="Stock:"/>
+                                            <h:outputText class="w-full block text-left" value="#{articleBean.selectedArticle.quantite}"/>
+                                        </p:panelGrid>
+                                    </div>
+                                </div>
+                            </p:column>
+                        </p:outputPanel>
+                    </p:dialog>
+
+                    <p:dialog header="Détail d'Article" showEffect="fade" modal="true" widgetVar="manageArticleDialog"
+                              responsive="true">
+                        <p:outputPanel id="manage-article-content" class="ui-fluid">
+                            <p:outputPanel rendered="#{not empty articleBean.selectedArticle}">
+                                    <div class="card manage-article-container">
+                                        <p:panelGrid columns="2" layout="grid" styleClass="showcase-text-align-center">
+
+                                            <p:outputLabel for="name">Nom Article</p:outputLabel>
+                                            <p:inputText id="name" value="#{articleBean.selectedArticle.nomArticle}" required="true" />
+
+
+                                            <p:outputLabel for="quantity">Quantity</p:outputLabel>
+                                            <p:spinner id="quantity" min="0" value="#{articleBean.selectedArticle.quantite}" />
+
+                                            <p:outputLabel for="couleur-box">Couleur</p:outputLabel>
+                                            <p:selectOneMenu id="couleur-box" value="#{articleBean.selectedArticle.couleur}" label="Search Couleur" style="width: 100%">
+                                                <f:selectItems value="#{couleurBean.allCouleurs}"/>
+                                                <f:converter converterId="couleurConverter"/>
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel for="type-box">Type</p:outputLabel>
+                                            <p:selectOneMenu id="type-box" value="#{articleBean.selectedArticle.type}" label="Search Type" style="width: 100%">
+                                                <f:selectItems value="#{typeBean.allTypes}"/>
+                                                <f:converter converterId="typeConverter"/>
+                                            </p:selectOneMenu>
+
+                                            <p:outputLabel for="marque-box">Marque</p:outputLabel>
+                                            <p:selectOneMenu id="marque-box" value="#{articleBean.selectedArticle.marque}"
+                                                             var="marque"
+                                                             filter="true"
+                                                             filterMatchMode="startsWith"
+                                                             filterNormalize="true"
+                                                             style="width: 100%">
+
+                                                <f:selectItems value="#{marqueBean.allMarques}"/>
+                                                <f:converter converterId="marqueConverter"/>
+
+                                                <p:column style="width:10%">
+                                                    <span style="width: 30px; height: 20px">#{marque.id}</span>
+                                                </p:column>
+
+                                                <p:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="Nom Marque"/>
+                                                    </f:facet>
+                                                    <h:outputText value="#{marque.nomMarque}"/>
+                                                </p:column>
+                                            </p:selectOneMenu>
+
+                                        </p:panelGrid>
+                                    </div>
+                            </p:outputPanel>
+                        </p:outputPanel>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Save" icon="pi pi-check"
+                                             update="manage-article-content" process="manage-article-content @this" actionListener="#{articleBean.postArticle}"/>
+                            <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageArticleDialog').hide()"
+                                             class="ui-button-secondary" type="button" />
+                        </f:facet>
+                    </p:dialog>
+
+                        <p:confirmDialog widgetVar="deleteArticleDialog" showEffect="fade" width="300"
+                                     message="Voulez-vous supprimez cet article ?" header="Confirm" severity="warn">
+                        <p:commandButton value="Oui" icon="pi pi-check" actionListener="#{articleBean.deleteArticle}"
+                                         process="@this"/>
+                        <p:commandButton value="Non" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                         onclick="PF('deleteProductDialog').hide()" />
+                    </p:confirmDialog>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>
