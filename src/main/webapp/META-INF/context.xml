@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Realm className="org.apache.catalina.realm.JAASRealm"
+           appName="MyLoginModule"
+           userClassNames="fr.btn.sdbm_web.jaas.UserPrincipal"
+           roleClassNames="fr.btn.sdbm_web.jaas.RolePrincipal"/>
+</Context>

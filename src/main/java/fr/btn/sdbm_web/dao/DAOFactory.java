@@ -8,6 +8,7 @@ public class DAOFactory {
     private static TypeDAO typeDAO;
     private static MarqueDAO marqueDAO;
     private static FabricantDAO fabricantDAO;
+    private static UtilisateurDAO utilisateurDAO;
 
     private DAOFactory() {
 
@@ -62,5 +63,10 @@ public class DAOFactory {
         return fabricantDAO;
     }
 
+    public static UtilisateurDAO getUtilisateurDAO() {
+        if(utilisateurDAO == null)
+            utilisateurDAO = new UtilisateurDAO();
 
+        return utilisateurDAO;
+    }
 }

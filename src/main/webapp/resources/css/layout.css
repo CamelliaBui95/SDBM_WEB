@@ -1,30 +1,16 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-family: 'Source Code Pro', monospace;
-    height: 100vh;
+    height: 80vh;
 }
 
-.link-container {
-    padding: 0;
-    margin: 0;
-}
-
-.link-container li {
-    list-style: none;
-    color: white !important;
-    font-size: 1.75rem;
-}
 
 #logo {
-    margin-left: 0.5rem;
-    font-size: 2.75rem;
+    font-size: 2rem;
     font-weight: 600;
 }
-
-#header {
-    max-height: 5%;
-    background-color: darkslategrey;
-    color: white !important;
+#menu-bar {
+    background-color: white !important;
 }
 
 #main {
@@ -34,6 +20,6 @@ body {
 
 #footer {
     max-height: 5%;
-    background-color: darkslategrey;
-    color: white !important;
+    background-color: white;
+
 }

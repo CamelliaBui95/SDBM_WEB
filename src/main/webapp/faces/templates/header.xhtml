@@ -8,13 +8,18 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view>
     <ui:composition>
-        <p class="m-0" id="logo">SDBM</p>
-        <ul class="link-container flex justify-center items-center">
-            <li><p:link styleClass="no-decoration mx-1" value="Articles" outcome="index-article"/></li>
-            <li><p:link styleClass="no-decoration mx-1" value="Marques" outcome="index"/></li>
-            <li><p:link styleClass="no-decoration mx-1" value="Couleurs" outcome="index-couleur"/></li>
-            <li><p:link styleClass="no-decoration mx-1" value="Pays-Continents" outcome="index"/></li>
-        </ul>
+        <div>
+            <p id="logo" class="m-0">SDBM</p>
+        </div>
+        <h:form class="flex flex-row justify-center items-center">
+            <p:menubar id="menu-bar" styleClass="border-none">
+                <p:menuitem value="Articles" url="#{premierBean.facesPath}admin/index-article.xhtml"/>
+                <p:menuitem value="Couleurs" url="#{premierBean.facesPath}user/index-couleur.xhtml"/>
+            </p:menubar>
+
+            <p:commandButton value="Logout" action="#{premierBean.logOut}" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+        </h:form>
+
     </ui:composition>
 </f:view>
 </html>

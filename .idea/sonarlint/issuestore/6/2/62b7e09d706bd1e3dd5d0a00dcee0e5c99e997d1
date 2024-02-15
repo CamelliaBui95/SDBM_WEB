@@ -1,11 +1,11 @@
 
 f
-java:S1192<"IDefine a constant instead of duplicating this literal "articles" 3 times.(äÀûˆ8˜‚¢íÙ1
+java:S1192;"IDefine a constant instead of duplicating this literal "articles" 3 times.(äÀûˆ8¦å·Ú1
 J
-java:S1948"-Make "allArticles" transient or serializable.(ÖØ8Â‚¢íÙ1
+java:S1948"-Make "allArticles" transient or serializable.(ÖØ8¬¦å·Ú1
 S
-java:S1948"1Make "selectedArticle" transient or serializable.(óäÁèúÿÿÿÿ8Â‚¢íÙ1
+java:S1948"1Make "selectedArticle" transient or serializable.(óäÁèúÿÿÿÿ8­¦å·Ú1
 L
-java:S1948"/Make "articleSearch" transient or serializable.(ƒßŸ®8Â‚¢íÙ1
+java:S1948"/Make "articleSearch" transient or serializable.(ƒßŸ®8­¦å·Ú1
 J
-java:S1481|".Remove this unused "msgDetail" local variable.(ÈÑ­:8Ô‚¢íÙ1
+java:S1481{".Remove this unused "msgDetail" local variable.(ÈÑ­:8º¦å·Ú1

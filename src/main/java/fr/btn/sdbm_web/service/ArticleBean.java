@@ -56,7 +56,6 @@ public class ArticleBean implements Serializable {
                        allArticles.sort(cp);
                 }
 
-
                 DataTable dataTable = (DataTable) FacesContext.getCurrentInstance().getViewRoot().findComponent("articles");
                 if(dataTable != null)
                     dataTable.reset();
