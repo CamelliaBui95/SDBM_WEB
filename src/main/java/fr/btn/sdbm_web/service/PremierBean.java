@@ -43,7 +43,7 @@ public class PremierBean implements Serializable {
             return "/faces/login/login.xhtml";
         } catch (ServletException servletException ) {
             servletException.printStackTrace();
-            return facesPath + "/login/error.xhtml";
+            return "/faces/login/error.xhtml";
         }
     }
 }

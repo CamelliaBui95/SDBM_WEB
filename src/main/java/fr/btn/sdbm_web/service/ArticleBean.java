@@ -16,6 +16,8 @@ import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
+import javax.swing.text.Document;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;

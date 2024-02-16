@@ -12,6 +12,6 @@ public class Main {
         System.out.println("Pass1 = " + hashedPass1);
         System.out.println("Pass2 = " + hashedPass2);
 
-        System.out.println(Argon2.validate(pass1, hashedPass1));
+        System.out.println(Argon2.validate(pass1, "qANz3cfb8AYIGoDnmySDjg$E0m1AU+n67bND7la2mHTqqJUnrDo2iIx89NK6G9RkxQ"));
     }
 }

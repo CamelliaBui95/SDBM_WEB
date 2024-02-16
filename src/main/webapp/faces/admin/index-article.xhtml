@@ -161,25 +161,28 @@
                                     </p:panelGrid>
                                 </h:form>
                             </div>
-                            <p:toolbar>
-                                <p:toolbarGroup>
-                                    <p:commandButton value="New" icon="pi pi-plus" actionListener="#{articleBean.openNew}"
-                                                     update=":dialogs:manage-article-content" oncomplete="PF('manageArticleDialog').show()"
-                                                     styleClass="ui-button-success" style="margin-right: .5rem">
-                                        <p:resetInput target=":dialogs:manage-article-content" />
-                                    </p:commandButton>
-                                </p:toolbarGroup>
 
-                                <p:toolbarGroup align="right">
-                                    <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download" />
+                            <h:form>
+                                <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="New" icon="pi pi-plus" actionListener="#{articleBean.openNew}"
+                                                         update=":dialogs:manage-article-content" oncomplete="PF('manageArticleDialog').show()"
+                                                         styleClass="ui-button-success" style="margin-right: .5rem">
+                                            <p:resetInput target=":dialogs:manage-article-content" />
+                                        </p:commandButton>
+                                    </p:toolbarGroup>
 
-                                    <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
-                                        <p:dataExporter type="pdf" target="articles" fileName="products" />
-                                    </p:commandButton>
+                                    <p:toolbarGroup align="right">
+                                        <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download" />
 
-                                </p:toolbarGroup>
+                                        <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                                            <p:dataExporter type="pdf" target="articles" fileName="products" />
+                                        </p:commandButton>
 
-                            </p:toolbar>
+                                    </p:toolbarGroup>
+
+                                </p:toolbar>
+                            </h:form>
                         </f:facet>
 
                         <p:column headerText="Référence" sortBy="#{article.id}">
@@ -198,7 +201,7 @@
                             <h:outputText value="#{article.quantite}" />
                         </p:column>
 
-                        <p:column style="text-align: center">
+                        <p:column exportable="false" style="text-align: center">
                             <div class="flex flex-row justify-center items-center gap-1">
                                 <p:commandButton update=":dialogs:articleDetail" oncomplete="PF('articleDialog').show()"
                                                  icon="pi pi-search">

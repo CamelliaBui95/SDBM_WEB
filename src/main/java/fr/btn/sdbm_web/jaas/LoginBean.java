@@ -51,8 +51,7 @@ public class LoginBean implements Serializable {
             return originalURI;
         } catch (ServletException servletException ) {
             facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Une erreur s'est produite : Login failed", null));
-
-            return premierBean.getFacesPath() + "login/error.xhtml";
+            return "/faces/login/error.xhtml";
         }
 
     }

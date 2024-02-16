@@ -16,7 +16,6 @@ public class UtilisateurBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        System.out.println("init utilisateur bean");
         currentUtilisateur = new Utilisateur();
     }
 
